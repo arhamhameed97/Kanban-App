@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Kanban Board</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Theme Toggle Button -->
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+        <svg class="theme-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"/>
+            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+        </svg>
+    </button>
+
+    <!-- Header -->
+    <header class="header">
+        <h1 class="title">Kanban Board</h1>
+        <p class="subtitle">Organize your tasks efficiently</p>
+    </header>
+
+
+    <!-- Main Container -->
+    <main class="main-container">
+        <!-- Kanban Columns -->
+        <div class="kanban-board">
+            <!-- To Do Column -->
+            <div class="column" data-column="todo">
+                <div class="column-header">
+                    <h2 class="column-title">To Do</h2>
+                    <span class="task-count" id="todo-count">0</span>
+                </div>
+                <div class="column-content" id="todo-column">
+                    <div class="empty-state" id="todo-empty">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M9 11H5a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2h-4"/>
+                            <polyline points="9,11 9,7 15,7 15,11"/>
+                            <path d="M12 7V3a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v4"/>
+                        </svg>
+                        <p>No tasks yet</p>
+                    </div>
+                </div>
+                <button class="add-task-btn" data-column="todo">+ Add Task</button>
+            </div>
+
+            <!-- In Progress Column -->
+            <div class="column" data-column="progress">
+                <div class="column-header">
+                    <h2 class="column-title">In Progress</h2>
+                    <span class="task-count" id="progress-count">0</span>
+                </div>
+                <div class="column-content" id="progress-column">
+                    <div class="empty-state" id="progress-empty">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12,6 12,12 16,14"/>
+                        </svg>
+                        <p>No active tasks</p>
+                    </div>
+                </div>
+                <button class="add-task-btn" data-column="progress">+ Add Task</button>
+            </div>
+
+            <!-- Done Column -->
+            <div class="column" data-column="done">
+                <div class="column-header">
+                    <h2 class="column-title">Done</h2>
+                    <span class="task-count" id="done-count">0</span>
+                </div>
+                <div class="column-content" id="done-column">
+                    <div class="empty-state" id="done-empty">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                            <polyline points="22,4 12,14.01 9,11.01"/>
+                        </svg>
+                        <p>No completed tasks</p>
+                    </div>
+                </div>
+                <button class="add-task-btn" data-column="done">+ Add Task</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Task Modal -->
+    <div id="task-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Add New Task</h3>
+                <button class="close-btn" id="close-modal">&times;</button>
+            </div>
+            <form id="task-form">
+                <div class="form-group">
+                    <label for="task-title">Title</label>
+                    <input type="text" id="task-title" required placeholder="Enter task title">
+                </div>
+                <div class="form-group">
+                    <label for="task-description">Description</label>
+                    <textarea id="task-description" placeholder="Enter task description"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="task-due-date">Due Date</label>
+                    <input type="date" id="task-due-date">
+                </div>
+                <div class="form-group">
+                    <label for="task-priority">Priority</label>
+                    <select id="task-priority">
+                        <option value="low">Low</option>
+                        <option value="medium" selected>Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancel-task">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Task</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Confetti Canvas -->
+    <canvas id="confetti-canvas"></canvas>
+
+
+    <script src="script.js"></script>
+</body>
+</html>
